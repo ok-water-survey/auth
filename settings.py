@@ -15,9 +15,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'auth',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
+        'USER': 'mstacy',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': 'fire.rccc.ou.edu',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': 'worker.oklahomawatersurvey.org',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -63,13 +63,13 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://static.cybercommons.org/media/django_admin/media/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 #ADMIN_MEDIA_PREFIX = '/static/admin/'
-ADMIN_MEDIA_PREFIX = 'http://static.cybercommons.org/media/django_admin/media/'
+#ADMIN_MEDIA_PREFIX = 'http://static.cybercommons.org/media/django_admin/media/'
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -90,8 +90,8 @@ STATICFILES_FINDERS = (
 SECRET_KEY = "cc90e55712bd08830fd3a82adbeb2cfb" #cybercommons Mod_auth_tkt secret
 LOGIN_URL = '/accounts/login/'
 # Switch on differnet domains
-SESSION_COOKIE_DOMAIN ='.oklahomawatersurvey.org'
-CSRF_COOKIE_DOMAIN = '.oklahomawatersurvey.org'
+SESSION_COOKIE_DOMAIN ='.cybercommons.org'
+CSRF_COOKIE_DOMAIN = '.cybercommons.org'
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
