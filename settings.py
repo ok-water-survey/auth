@@ -1,10 +1,13 @@
 # Django settings for auth project.
 import os
+import json
+secrets = json.load(file("secrets.json"))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-     ('Mark Stacy', 'markstacy@ou.edu'),
+     (secrets['ADMIN']['NAME'] , secrets['ADMIN']['EMAIL']),
 )
 
 MANAGERS = ADMINS
@@ -14,10 +17,10 @@ AUTHTKT_DOMAIN= 'subdomain'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'auth',                      # Or path to database file if using sqlite3.
-        'USER': 'mstacy',                      # Not used with sqlite3.
+        'NAME': secrets['DATABASE'] ,                      # Or path to database file if using sqlite3.
+        'USER': secrets['USER'],                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': 'worker.oklahomawatersurvey.org',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': secrets['HOST'],                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -86,12 +89,14 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-#SECRET_KEY = 'ip03&xep8j-++xigu*+#np%ytdgna$xi9+c6+f$3$k^06g4yi#'
-SECRET_KEY = "cc90e55712bd08830fd3a82adbeb2cfb" #cybercommons Mod_auth_tkt secret
+#import json
+#secrets = json.load(file("secrets.json"))
+SECRET_KEY = secrets['SECRET_KEY']
+
 LOGIN_URL = '/accounts/login/'
 # Switch on differnet domains
-SESSION_COOKIE_DOMAIN ='.cybercommons.org'
-CSRF_COOKIE_DOMAIN = '.cybercommons.org'
+SESSION_COOKIE_DOMAIN = secrets["DOMAIN"] 
+CSRF_COOKIE_DOMAIN = secrets["DOMAIN"]
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
